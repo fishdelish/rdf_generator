@@ -1,4 +1,5 @@
 require 'net/http'
+require 'cgi'
 
 class RdfController < ApplicationController
   def index
