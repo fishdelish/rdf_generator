@@ -9,7 +9,7 @@ class RdfController < ApplicationController
     url = URI.parse(Rails::TRIPLESTORE['sparql-uri'])
     http = Net::HTTP.new(url.host, url.port)
     http.read_timeout = 3600
-    results = http.post(url.path, "query=#{CGI.escape(query)}", {"Accept" => "application/rdf+xml"})
+    results = http.get(url.path + "?query=#{CGI.escape(query)}", {"Accept" => "application/rdf+xml"})
     render :text => results.body, :content_type => "application/rdf+xml"
   end
 
@@ -22,7 +22,7 @@ class RdfController < ApplicationController
     url = URI.parse(Rails::TRIPLESTORE['sparql-uri'])
     http = Net::HTTP.new(url.host, url.port)
     http.read_timeout = 3600
-    results = http.post(url.path, "query=#{CGI.escape(query)}", {"Accept" => "application/rdf+xml"})
+    results = http.get(url.path + "?query=#{CGI.escape(query)}", {"Accept" => "application/rdf+xml"})
     render :text => results.body, :content_type => "application/rdf+xml"
   end
 end
